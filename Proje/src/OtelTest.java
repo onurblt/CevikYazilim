@@ -1,5 +1,8 @@
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -19,6 +22,17 @@ public class OtelTest {
 	}
 
 	@Test
+	public void testGetHotels() {
+		ArrayList<Otel> oteller = Otel.alOteller();
+		assertNotEquals(null,oteller);
+		for(int i=0;i<oteller.size();i++) {
+			assertNotEquals(null,oteller.get(i).ad);
+			assertNotEquals(null,oteller.get(i).kapasite);
+			assertNotEquals(null,oteller.get(i).id);
+			assertNotEquals(null,oteller.get(i).sorumlu);
+		}
+	}
+	@Test
 	public void testGet() {
 		
 		
@@ -28,19 +42,7 @@ public class OtelTest {
 		
 		
 	}
-	@Test
-	public void testSil() {
-		
-		assertEquals( null,Otel.getOtel("Yok"));
-		assertEquals(true,Otel.silOtel("Yok"));
-
-		assertNotEquals( null,Otel.getOtel("ABC"));
-		assertEquals(true,Otel.silOtel("ABC"));
-		assertEquals( null,Otel.getOtel("ABC"));
-		
 	
-	
-	}
 	@Test
 	public void testEkle() {
 		Otel otelNull=null;
@@ -72,11 +74,24 @@ public class OtelTest {
 		assertEquals( null,Otel.getOtel("ABC"));
 		Otel.otelEkle(otel5);
 		assertNotEquals( null,Otel.getOtel("ABC"));
-		Otel.silOtel("ABC");
+		//Otel.silOtel("Palace");
 		
 		
 		
 		
+	}
+	@Test
+	public void testSil() {
+		
+		assertEquals( null,Otel.getOtel("Yok"));
+		assertEquals(true,Otel.silOtel("Yok"));
+
+		assertNotEquals( null,Otel.getOtel("ABC"));
+		assertEquals(true,Otel.silOtel("ABC"));
+		assertEquals( null,Otel.getOtel("ABC"));
+		
+	
+	
 	}
 
 }

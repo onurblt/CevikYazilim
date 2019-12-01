@@ -3,10 +3,11 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Otel {
 	
-	public static ArrayList<Otel> oteller;
+	public static ArrayList<Otel> oteller=new ArrayList<Otel>();
 	
 	public String ad="";
 	public int id=0;
@@ -110,6 +111,44 @@ public class Otel {
 		
 		return otel;
 		
+	}
+	static ArrayList<Otel> alOteller() {
+		Otel otel = null;
+		//List<Otel> oteller = new ArrayList<Otel>();
+		int i=0;
+		Connection c = null;
+		   Statement stmt = null;
+		   try {
+		      Class.forName("org.sqlite.JDBC");
+		      c = DriverManager.getConnection("jdbc:sqlite:veritabani.db");
+		      c.setAutoCommit(false);
+		      System.out.println("Opened database successfully");
+
+		      stmt = c.createStatement();
+		      ResultSet rs = stmt.executeQuery( "SELECT * FROM oteller");
+		      
+		      while ( rs.next() ) {
+		    	  otel=new Otel();
+		    	  otel.id = rs.getInt("id");
+		    	  otel.ad = rs.getString("ad");
+		    	  otel.kapasite  = rs.getInt("kapasite");
+		    	  otel.musteriSayisi  = rs.getInt("musteriSayisi");	
+		    	  oteller.add(otel);
+		      }
+		    	  rs.close();
+			      stmt.close();
+			      c.close();
+			      
+		      
+		   } catch ( Exception e ) {
+		      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+		     // System.exit(0);
+
+		      return null;
+		   }
+		  
+		
+		return oteller;
 	}
 	
 	
