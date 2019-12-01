@@ -1,0 +1,10 @@
+package model;
+
+public enum Yetki {
+	
+	YETKISIZ,
+	MUSTERI,
+	OTEL_SORUMLUSU,
+	SISTEM_YONETICISI
+
+}
