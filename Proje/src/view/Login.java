@@ -43,13 +43,11 @@ public class Login extends JPanel {
 	private JLabel lbl2;
 	private JLabel lbl3;
 	private JLabel lbl0;
-	private JLabel BtnClose;
 	private JLabel BtnSifreUnuttum;
 	private JLabel image;
 	private JLabel frameDrag;
 	int pX;
 	int pY;
-	private JLabel BtnMinimize;
 	/**
 	 * Launch the application.
 	 */
@@ -95,36 +93,6 @@ public class Login extends JPanel {
 		frameDrag.setBounds(0, 0, 562, 31);
 		add(frameDrag);
 		
-		BtnMinimize = new JLabel("");
-		BtnMinimize.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		BtnMinimize.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				//setState(ICONIFIED);
-			}
-		});
-		BtnMinimize.setIcon(new ImageIcon(Login.class.getResource("/kucult.png")));
-		BtnMinimize.setHorizontalAlignment(SwingConstants.CENTER);
-		BtnMinimize.setForeground(Color.WHITE);
-		BtnMinimize.setFont(new Font("Tahoma", Font.BOLD, 15));
-		BtnMinimize.setBounds(591, 0, 30, 31);
-		add(BtnMinimize);
-		
-		BtnClose = new JLabel("");
-		BtnClose.setIcon(new ImageIcon(Login.class.getResource("/kapat.png")));
-		BtnClose.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				//dispose();
-			}
-		});
-		BtnClose.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		BtnClose.setForeground(new Color(255, 255, 255));
-		BtnClose.setHorizontalAlignment(SwingConstants.CENTER);
-		BtnClose.setFont(new Font("Tahoma", Font.BOLD, 15));
-		BtnClose.setBounds(620, 0, 30, 31);
-		add(BtnClose);
-		
 		lbl0 = new JLabel("OTEL REZARVASYON SÝS. GÝRÝÞ");
 		lbl0.setForeground(new Color(255, 255, 255));
 		lbl0.setHorizontalAlignment(SwingConstants.CENTER);
@@ -168,9 +136,15 @@ public class Login extends JPanel {
 			
 				LoginController.Giris(TextFielduserName.getText(), TextfieldpassWord.getText());
 				
-				if(LoginController.aktifKullanici.getYetki()!=Yetki.YETKISIZ)
+				if(LoginController.simdikiKullanici.yetki != Yetki.YETKISIZ)
 				{
 					System.out.println("login");
+
+					Application.BilgiKutusu("Giris Basarili", "Hosgeldiniz");
+				}
+				else
+				{
+					Application.BilgiKutusu("Giris Basarisiz", "Sifrenizi Kontrol edin!");
 				}
 				
 			}

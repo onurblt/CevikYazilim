@@ -40,11 +40,9 @@ public class SifremiUnuttum extends JFrame {
 	private JTextField BtniPtal;
 	private JLabel lbl2;
 	private JLabel lbl0;
-	private JLabel BtnClose;
 	private JLabel frameDrag;
 	int pX;
 	int pY;
-	private JLabel BtnMinimize;
 	/**
 	 * Launch the application.
 	 */
@@ -90,36 +88,6 @@ public class SifremiUnuttum extends JFrame {
 		
 		frameDrag.setBounds(0, 0, 562, 31);
 		contentPane.add(frameDrag);
-		
-		BtnMinimize = new JLabel("");
-		BtnMinimize.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		BtnMinimize.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				setState(ICONIFIED);
-			}
-		});
-		BtnMinimize.setIcon(new ImageIcon(SifremiUnuttum.class.getResource("/kucult.png")));
-		BtnMinimize.setHorizontalAlignment(SwingConstants.CENTER);
-		BtnMinimize.setForeground(Color.WHITE);
-		BtnMinimize.setFont(new Font("Tahoma", Font.BOLD, 15));
-		BtnMinimize.setBounds(591, 0, 30, 31);
-		contentPane.add(BtnMinimize);
-		
-		BtnClose = new JLabel("");
-		BtnClose.setIcon(new ImageIcon(SifremiUnuttum.class.getResource("/kapat.png")));
-		BtnClose.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				dispose();
-			}
-		});
-		BtnClose.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		BtnClose.setForeground(new Color(255, 255, 255));
-		BtnClose.setHorizontalAlignment(SwingConstants.CENTER);
-		BtnClose.setFont(new Font("Tahoma", Font.BOLD, 15));
-		BtnClose.setBounds(620, 0, 30, 31);
-		contentPane.add(BtnClose);
 		
 		lbl0 = new JLabel("    S\u0130FREM\u0130 UNUTTUM");
 		lbl0.setForeground(new Color(255, 255, 255));

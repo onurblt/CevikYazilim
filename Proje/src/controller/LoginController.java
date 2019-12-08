@@ -7,13 +7,40 @@ import model.Yetki;
 
 public class LoginController {
 	
-	public static void Giris(String kullaniciAdi,String sifre)
+	public static void Giris(String ad,String sifre)
 	{
-		aktifKullanici=null;
+		simdikiKullanici=null;
 		System.gc();
-		aktifKullanici=new Kullanici();
-		Yetki yetki=aktifKullanici.login(kullaniciAdi, sifre);
+		simdikiKullanici=new Kullanici();
 		
+		simdikiKullanici.yetki=Yetki.YETKISIZ;
+		if(ad.equals("") || sifre.equals(""))
+		{
+			return;
+		}
+		
+		   try {
+		  
+		   
+		      ResultSet rs =DB.Calistir( "SELECT * FROM kullanicilar WHERE ad=\'"+ad+"\' AND sifre=\'"+sifre+"\'"  );
+		      
+		      if ( rs.next() ) {
+		    	  simdikiKullanici.id = rs.getInt(1);
+		    	  simdikiKullanici. ad = rs.getString(2);
+		    	  simdikiKullanici. email  = rs.getString(3);
+		    	  simdikiKullanici.sifre= rs.getString(4);
+		    	  simdikiKullanici.yetki= rs.getInt(5);
+		      }
+		    	  
+		      DB.Temizle(rs);
+		   } catch ( Exception e ) {
+		      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+		   
+		     // System.exit(0);
+		   }
+		   System.out.println("Operation done successfully");
+		
+	
 			
 	}
 	
@@ -22,7 +49,7 @@ public class LoginController {
 		
 	}
 	
-	static public Kullanici aktifKullanici=new Kullanici();
+	static public Kullanici simdikiKullanici=new Kullanici();
 	
 
 }
