@@ -9,5 +9,4 @@ public class Rezervasyon {
 	public int id;
 	public Kullanici sahip;
 	//tarih
-	public int statu;
 }

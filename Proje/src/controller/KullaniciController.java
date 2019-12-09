@@ -9,7 +9,6 @@ import java.util.ArrayList;
 
 import model.Kullanici;
 import model.Yetki;
-import view.Application;
 
 public class KullaniciController {
 
@@ -147,62 +146,7 @@ public class KullaniciController {
 		}
 		return true;
 	}
-/*
-	public static ArrayList<Kullanici> Ara(String ad) {
-		
-		ArrayList<Kullanici> bulunan = new ArrayList<Kullanici>();
 
-	
-
-		try {
-			// Establish the connection.
-			SQLServerDataSource ds = new SQLServerDataSource();
-			ds.setIntegratedSecurity(true);
-			ds.setServerName(DB.sunucu);
-			ds.setPortNumber(DB.port);
-			ds.setDatabaseName(DB.dbAdi);
-			con = ds.getConnection();
-
-			// Create and execute an SQL statement that returns some data.
-			String SQL = "SELECT * FROM Personel WHERE Adi LIKE '"+ad+"%' AND Soyadi LIKE '" + soyad +"%'";
-			stmt = con.createStatement();
-			rs = stmt.executeQuery(SQL);
-
-			// Iterate through the data in the result set and display it.
-			while (rs.next()) {
-				Personel personel = new Personel();
-				
-				personel.id = rs.getInt(1);
-				personel.ad = rs.getString(2);
-				personel.soyad = rs.getString(3);
-				personel.dogumTarihi = rs.getDate(4);
-				personel.TCno = rs.getString(5);
-				personel.unvan = rs.getString(6);
-				personel.tel1 = rs.getString(7);
-				personel.tel2 = rs.getString(8);
-				personel.adres = rs.getString(9);
-				personel.maas = rs.getFloat(10);
-				personel.yetki = rs.getInt(11);
-				personel.statu = rs.getInt(12);
-				personel.email = rs.getString(13);
-				// System.out.println(rs.getString(4) + " " + rs.getString(6));
-				bulunan.add(personel);
-				
-			}
-		}
-
-		// Handle any errors that may have occurred.
-		catch (Exception e) {
-			e.printStackTrace();
-			return bulunan;
-		}
-
-	
-
-		return bulunan;
-
-	}*/
-	
 	public static Kullanici get(int id) 
 	{
 		Kullanici kullanici = null;

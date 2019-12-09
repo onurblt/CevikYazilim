@@ -2,17 +2,23 @@ package controller;
 
 import static org.junit.Assert.*;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-
 
 import model.Otel;
 
-public class OtelUnitTest {
+public class OtelControllerUnitTest {
 
-	
-	
-	
+	@Before
+	public void setUp() throws Exception {
+	}
+
+	@After
+	public void tearDown() throws Exception {
+	}
+
+
 	   @Test
 	   public void testEkle(){
 		   
@@ -33,4 +39,5 @@ public class OtelUnitTest {
 		   
 		   
 	   }
+
 }

@@ -44,10 +44,33 @@ public class LoginController {
 			
 	}
 	
+	public static void GirisMock(String ad,String sifre)
+	{
+		simdikiKullanici=null;
+		System.gc();
+		simdikiKullanici=new Kullanici();
+		
+		simdikiKullanici.yetki=Yetki.YETKISIZ;
+		if(ad.equals("") || sifre.equals(""))
+		{
+			return;
+		}
+		
+		simdikiKullanici.ad="Bill Gates";
+		simdikiKullanici.yetki=Yetki.OTEL_SORUMLUSU;
+		
+	}
+	
 	public void Cikis()
+	{
+		simdikiKullanici=null;
+		System.gc();
+	}
+	public void CikisMock()
 	{
 		
 	}
+	
 	
 	static public Kullanici simdikiKullanici=new Kullanici();
 	

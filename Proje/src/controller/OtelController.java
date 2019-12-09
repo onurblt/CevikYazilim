@@ -117,17 +117,17 @@ public class OtelController {
 		   
 		   otel.odalar.clear();
 			   try {
-			      ResultSet rs = DB.Calistir( "SELECT odalar.id,odalar.kapasite,odalar.rezervasyon FROM odalar INNER JOIN otellerodalar ON odalar.id=otellerodalar.odaId AND otellerodalar.otelId="+Integer.toString(otel.id));
+			      ResultSet rs = DB.Calistir( "SELECT odalar.id,odalar.kapasite,odalar.rezervasyon FROM odalar WHERE odalar.otelId="+Integer.toString(otel.id));
 			      //
 			      
 			      while ( rs.next() ) {
-			    	  Oda oda=new Oda();
+			    	  Oda oda=new Oda(otel);
 			    	  oda.id = rs.getInt("id");
 			    	  oda.kapasite = rs.getInt("kapasite");
 
 			    	  oda.rezervasyon = rs.getBoolean("rezervasyon");
 			    	  
-			    	  otel.odalar.add(oda);
+			    	  //otel.odalar.add(oda);
 
 			      }
 			      DB.Temizle(rs);
@@ -142,6 +142,9 @@ public class OtelController {
 		return otel;
 		
 	}
+	
+	
+	
 	public static ArrayList<Otel> alOteller() {
 		Otel otel = null;
 		   try {

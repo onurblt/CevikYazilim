@@ -6,6 +6,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import model.Yetki;
+
 public class LoginControllerUnitTest {
 
 	@Before
@@ -17,7 +19,22 @@ public class LoginControllerUnitTest {
 	}
 
 	@Test
-	public void test() {
+	public void testGiris() {
+		LoginController.GirisMock("", "");
+		
+		assertEquals(LoginController.simdikiKullanici.yetki,Yetki.YETKISIZ);
+		
+
+		LoginController.GirisMock("user", "");
+		assertEquals(LoginController.simdikiKullanici.yetki,Yetki.YETKISIZ);
+		
+		LoginController.GirisMock("", "123123");
+		assertEquals(LoginController.simdikiKullanici.yetki,Yetki.YETKISIZ);
+		
+		
+		LoginController.GirisMock("Bill Gates", "1234");
+		assertEquals(LoginController.simdikiKullanici.yetki,Yetki.OTEL_SORUMLUSU);
+
 	}
 
 }

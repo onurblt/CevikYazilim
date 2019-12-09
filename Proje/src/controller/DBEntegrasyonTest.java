@@ -23,7 +23,11 @@ public class DBEntegrasyonTest {
 	@Test
 	public void testCalistir() throws SQLException {
 
-		ResultSet rs=DB.Calistir("");
+		ResultSet rs=DB.Calistir(null);
+		assertEquals(null,rs);
+		DB.Temizle(rs);
+		
+		rs=DB.Calistir("");
 		assertEquals(null,rs);
 		DB.Temizle(rs);
 		

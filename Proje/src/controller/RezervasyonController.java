@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 import model.Kullanici;
 import model.Rezervasyon;
-import view.Application;
+//import view.Application;
 
 public class RezervasyonController {
 
@@ -20,14 +20,14 @@ public class RezervasyonController {
 		try {
 			ResultSet rs = DB.Calistir("SELECT * FROM rezervasyonlar");
 
-			// Iterate through the data in the result set and display it.
 			while (rs.next()) {
-				Rezervasyon urun = new Rezervasyon();
+				Rezervasyon rezervasyon = new Rezervasyon();
 				
-				urun.id= rs.getInt(1);
-				urun.statu = rs.getInt(4);
-				liste.add(urun);
-				;
+				rezervasyon.id= rs.getInt(1);
+				rezervasyon.sahip = new Kullanici();
+				rezervasyon.sahip.id=rs.getInt(2);
+				liste.add(rezervasyon);
+				
 			}
 			DB.Temizle(rs);
 		}
@@ -40,28 +40,83 @@ public class RezervasyonController {
 		return liste;
 	}
 	
-	public static boolean Ekle(Rezervasyon urun) {
-
+	public static boolean Ekle(Rezervasyon rezervasyon) {
+		if(rezervasyon==null)
+		{
+			return false;
+		}
+		if(rezervasyon.sahip==null)
+		{
+			return false;
+		}
+		DB.Calistir("INSERT INTO rezervasyonlar(ownerId) VALUES ("+Integer.toString(rezervasyon.sahip.id)+")");
+		DB.Temizle(null);
 	
-		Application.BilgiKutusu("ISLEM BASARILI", "Ekleme islemi basariyla gerceklestirildi!");
 		return true;
 	}
 
-	public static boolean Sil(Rezervasyon urun) {
-		
-		Application.BilgiKutusu("ISLEM BASARILI", "Silme islemi basariyla gerceklestirildi!");
+	public static boolean EkleMock(Rezervasyon rezervasyon) {
+
+		if(rezervasyon==null)
+		{
+			return false;
+		}
+		if(rezervasyon.sahip==null)
+		{
+			return false;
+		}
+	
+		return true;
+	}
+
+	public static boolean Sil(Rezervasyon rezervasyon) {
+		if(rezervasyon==null)
+		{
+			return false;
+		}
+		DB.Calistir("DELETE FROM rezervasyonlar WHERE id= "+Integer.toString(rezervasyon.id));
+		DB.Temizle(null);
+	
 		return true;
 
 	}
+	public static boolean SilMock(Rezervasyon rezervasyon) {
 
-	public static ArrayList<Rezervasyon> ara(String ad) {
-		ArrayList<Rezervasyon> bulunan=null;
-		return bulunan;
-
+		if(rezervasyon==null)
+		{
+			return false;
+		}
+	
+		return true;
 	}
+	
 	public static Rezervasyon get(int id) {
 		Rezervasyon rezervasyon=null;
 		
+		ResultSet rs=DB.Calistir("SELECT * FROM rezervasyonlar WHERE id= "+Integer.toString(id));
+		try {
+			if(rs.next())
+			{
+				rezervasyon=new Rezervasyon();
+				rezervasyon.id=id;
+				rezervasyon.sahip=new Kullanici();
+				rezervasyon.sahip.id=rs.getInt(2);
+			}
+		} catch (SQLException e) {
+
+			DB.Temizle(rs);
+			e.printStackTrace();
+			return null;
+		}
+		DB.Temizle(rs);
+	
+		return rezervasyon;
+	}
+	public static Rezervasyon getMock(int id) {
+		Rezervasyon rezervasyon=new Rezervasyon();
+		rezervasyon.id=1;
+		rezervasyon.sahip = new Kullanici();
+		rezervasyon.sahip.id=2;
 		return rezervasyon;
 	}
 }

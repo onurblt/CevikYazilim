@@ -16,6 +16,11 @@ public class DB {
 	
 
 	public static ResultSet Calistir(String SQL) {
+
+		if(SQL==null)
+		{
+			return null;
+		}
 		if(SQL.equals(""))
 		{
 			return null;
@@ -56,8 +61,17 @@ public class DB {
 
 	public static ResultSet CalistirMock(String SQL) {
 		ResultSet result=null;
-
 		cleaned=false;
+
+		if(SQL==null)
+		{
+			return null;
+		}
+		if(SQL.equals(""))
+		{
+			return null;
+		}
+		
 		return result;
 	
 	}

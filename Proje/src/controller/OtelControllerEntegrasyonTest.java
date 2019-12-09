@@ -10,7 +10,7 @@ import org.junit.Test;
 
 import model.Otel;
 
-public class OtelEntegrasyonTest {
+public class OtelControllerEntegrasyonTest {
 
 	//Otel otel;
 	@Before

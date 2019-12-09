@@ -18,8 +18,11 @@ public class DBUnitTest {
 
 	@Test
 	public void testCalistir() {
-		
+
+		assertEquals(DB.CalistirMock(null),null);
 		assertEquals(DB.CalistirMock(""),null);
+
+		assertEquals(DB.CalistirMock("SELECT * FROM kullanicilar"),null);
 	}
 
 
@@ -35,6 +38,9 @@ public class DBUnitTest {
 	public void testIsCleaned() {
 		DB.CalistirMock(null);
 		assertEquals(false,DB.isCleaned());
+		
+
+		
 		
 		DB.TemizleMock(null);
 		assertEquals(true,DB.isCleaned());
